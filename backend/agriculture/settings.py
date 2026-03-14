@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     "corsheaders",
 
     # local
-     "users.apps.UsersConfig",
+    "users.apps.UsersConfig",
+    "catalog.apps.CatalogConfig",
+    "orders.apps.OrdersConfig",
 ]
 
 MIDDLEWARE = [
@@ -65,7 +67,7 @@ ASGI_APPLICATION = "agriculture.asgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": os.getenv("DB_ENGINE", "django.db.backends.postgresql"),
         "NAME": os.getenv("DB_NAME", "agriculture"),
         "USER": os.getenv("DB_USER", "postgres"),
         "PASSWORD": os.getenv("DB_PASS", "lalaina14"),
