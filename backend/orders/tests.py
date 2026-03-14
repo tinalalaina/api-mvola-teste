@@ -53,3 +53,9 @@ class OrdersApiTests(APITestCase):
 
         self.product.refresh_from_db()
         self.assertEqual(self.product.stock.quantity, 8)
+
+    def test_checkout_fails_with_empty_cart(self):
+        self.client.force_authenticate(user=self.client_user)
+        response = self.client.post(reverse("orders-checkout"), {}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("Panier vide", str(response.data))

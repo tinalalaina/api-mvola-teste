@@ -13,6 +13,12 @@ class CatalogApiTests(APITestCase):
             role="PRESTATAIRE",
             is_active=True,
         )
+        self.client_user = User.objects.create_user(
+            email="client@example.com",
+            password="StrongPass123",
+            role="CLIENT",
+            is_active=True,
+        )
 
     def test_seller_can_create_product(self):
         self.client.force_authenticate(user=self.seller)
@@ -38,3 +44,12 @@ class CatalogApiTests(APITestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data["name"], "Tomate")
+
+    def test_client_cannot_create_category(self):
+        self.client.force_authenticate(user=self.client_user)
+        response = self.client.post(
+            reverse("category-list-create"),
+            {"name": "Interdit", "slug": "interdit"},
+            format="json",
+        )
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

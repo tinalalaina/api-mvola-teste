@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Card from '../components/Card'
 
 const Home = () => {
@@ -5,35 +6,40 @@ const Home = () => {
     <div className="home">
       <section className="hero">
         <div>
-          <p className="eyebrow">Pour les agriculteurs et leurs partenaires</p>
-          <h1>Une plateforme simple pour piloter vos projets agricoles.</h1>
+          <p className="eyebrow">Plateforme de vente agricole multi-utilisateurs</p>
+          <h1>Votre boutique est prête: catalogue, panier, commande, espace vendeur.</h1>
           <p>
-            AgroConnect vous aide à suivre vos demandes, coordonner les prestataires et garder un œil clair sur vos
-            opérations. L&apos;interface reste simple et accessible pour tous les acteurs du terrain.
+            AgroConnect combine le backend Django (JWT, rôles, stock, checkout) et un frontend React pour offrir un
+            flux e-commerce complet.
           </p>
           <div className="hero-actions">
-            <button className="button button-primary">Découvrir l&apos;offre</button>
-            <button className="button">Voir les dashboards</button>
+            <Link className="button button-primary" to="/shop">
+              Voir la boutique
+            </Link>
+            <Link className="button" to="/register">
+              Créer un compte
+            </Link>
           </div>
         </div>
         <Card title="Ce que vous obtenez">
           <ul>
-            <li>Gestion des demandes en un seul endroit.</li>
-            <li>Inscription et accès rapides à la plateforme.</li>
-            <li>Trois dashboards dédiés: client, prestataire, admin.</li>
+            <li>Catalogue produits avec stock.</li>
+            <li>Panier client + checkout.</li>
+            <li>Suivi commandes par utilisateur.</li>
+            <li>Espace prestataire pour gérer ses produits.</li>
           </ul>
         </Card>
       </section>
 
       <section className="info-grid">
         <Card title="Client">
-          <p>Suivez vos demandes, vos devis et vos interventions en temps réel.</p>
+          <p>Achetez depuis la boutique, gérez votre panier et suivez vos commandes.</p>
         </Card>
         <Card title="Prestataire">
-          <p>Planifiez vos missions, confirmez vos disponibilités et communiquez avec les clients.</p>
+          <p>Créez vos catégories et produits, puis pilotez votre catalogue.</p>
         </Card>
         <Card title="Admin">
-          <p>Supervisez l&apos;ensemble des activités, validez les profils et analysez les performances.</p>
+          <p>Supervisez l&apos;activité, les comptes et les transactions.</p>
         </Card>
       </section>
     </div>

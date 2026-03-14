@@ -209,3 +209,48 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+.main-links {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.main-links a {
+  color: #374151;
+  font-weight: 500;
+}
+
+.success-message {
+  margin: 1rem 0;
+  background: #dcfce7;
+  color: #166534;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+}
+
+.cart-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.cart-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+textarea,
+select,
+input {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+}

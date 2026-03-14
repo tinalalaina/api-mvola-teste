@@ -11,7 +11,7 @@ class CategoryListCreateView(generics.ListCreateAPIView):
 
     def get_permissions(self):
         if self.request.method == "POST":
-            return [permissions.IsAuthenticated()]
+            return [IsSellerOrAdminForWrite()]
         return [permissions.AllowAny()]
 
 
@@ -22,7 +22,7 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_permissions(self):
         if self.request.method in permissions.SAFE_METHODS:
             return [permissions.AllowAny()]
-        return [permissions.IsAuthenticated()]
+        return [IsSellerOrAdminForWrite()]
 
 
 class ProductListCreateView(generics.ListCreateAPIView):

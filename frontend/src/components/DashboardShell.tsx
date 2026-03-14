@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
@@ -24,6 +24,10 @@ const DashboardShell = ({ title, subtitle, children }: DashboardShellProps) => {
         </div>
         <nav className="sidebar-links">
           <Link to={dashboardLink}>Tableau de bord</Link>
+          <Link to="/shop">Boutique</Link>
+          {role === 'CLIENT' ? <Link to="/cart">Panier</Link> : null}
+          {role === 'PRESTATAIRE' ? <Link to="/seller/products">Mes produits</Link> : null}
+          <Link to="/orders">Commandes</Link>
           <Link to="/settings">Paramètres</Link>
         </nav>
         <button className="button button-primary" onClick={() => void logout()}>
