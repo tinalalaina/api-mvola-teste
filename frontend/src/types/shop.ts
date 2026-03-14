@@ -4,6 +4,13 @@ export interface Category {
   slug: string
 }
 
+export interface ProductImage {
+  id: string
+  image: string
+  is_cover: boolean
+  created_at: string
+}
+
 export interface Product {
   id: string
   seller_id: string
@@ -13,6 +20,7 @@ export interface Product {
   description: string
   price: string
   is_active: boolean
+  images: ProductImage[]
   stock?: {
     quantity: number
   }

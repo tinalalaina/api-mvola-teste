@@ -8,6 +8,7 @@ export interface CreateProductPayload {
   description: string
   price: string
   is_active: boolean
+  stock_quantity?: number
 }
 
 export const fetchCategories = async () => {
@@ -25,6 +26,11 @@ export const fetchProducts = async () => {
   return data
 }
 
+export const fetchProductById = async (productId: string) => {
+  const { data } = await api.get<Product>(`/catalog/products/${productId}/`)
+  return data
+}
+
 export const fetchSellerProducts = async (sellerId: string) => {
   const { data } = await api.get<Product[]>(`/catalog/products/?seller=${sellerId}`)
   return data
@@ -32,6 +38,22 @@ export const fetchSellerProducts = async (sellerId: string) => {
 
 export const createProduct = async (payload: CreateProductPayload) => {
   const { data } = await api.post<Product>('/catalog/products/', payload)
+  return data
+}
+
+export const uploadProductImages = async (productId: string, files: File[]) => {
+  const formData = new FormData()
+  files.forEach((file) => formData.append('images', file))
+  const { data } = await api.post(`/catalog/products/${productId}/images/`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  })
+  return data
+}
+
+export const updateProduct = async (productId: string, payload: Partial<CreateProductPayload>) => {
+  const { data } = await api.patch<Product>(`/catalog/products/${productId}/`, payload)
   return data
 }
 
@@ -45,7 +67,7 @@ export const addCartItem = async (payload: { product: string; quantity: number }
   return data
 }
 
-export const updateCartItem = async (itemId: string, payload: { quantity: number; product: string }) => {
+export const updateCartItem = async (itemId: string, payload: { quantity: number; product?: string }) => {
   const { data } = await api.patch(`/cart/items/${itemId}/`, payload)
   return data
 }

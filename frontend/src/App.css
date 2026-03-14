@@ -254,3 +254,33 @@ input {
   border-radius: 10px;
   padding: 0.65rem 0.75rem;
 }
+
+
+.qty-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.link-inline {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.product-images-grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.product-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}

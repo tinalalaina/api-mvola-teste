@@ -13,6 +13,7 @@ import Register from './pages/Register'
 import SellerProducts from './pages/SellerProducts'
 import Settings from './pages/Settings'
 import Shop from './pages/Shop'
+import ProductDetail from './pages/ProductDetail'
 import './App.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route

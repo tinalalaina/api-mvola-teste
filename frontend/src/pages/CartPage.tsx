@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Card from '../components/Card'
-import { checkout, fetchCart, removeCartItem } from '../api/shopService'
-import type { Cart } from '../types/shop'
+import { checkout, fetchCart, removeCartItem, updateCartItem } from '../api/shopService'
+import type { Cart, CartItem } from '../types/shop'
 
 const CartPage = () => {
   const [cart, setCart] = useState<Cart | null>(null)
@@ -30,6 +30,15 @@ const CartPage = () => {
     await loadCart()
   }
 
+  const changeQuantity = async (item: CartItem, nextQuantity: number) => {
+    if (nextQuantity < 1) {
+      await handleRemove(item.id)
+      return
+    }
+    await updateCartItem(item.id, { quantity: nextQuantity })
+    await loadCart()
+  }
+
   const handleCheckout = async () => {
     if (!cart?.items.length) {
       return
@@ -54,9 +63,18 @@ const CartPage = () => {
                     {item.quantity} x {item.unit_price} Ar
                   </p>
                 </div>
-                <button className="button" onClick={() => void handleRemove(item.id)}>
-                  Supprimer
-                </button>
+                <div className="qty-box">
+                  <button className="button" onClick={() => void changeQuantity(item, item.quantity - 1)}>
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button className="button" onClick={() => void changeQuantity(item, item.quantity + 1)}>
+                    +
+                  </button>
+                  <button className="button" onClick={() => void handleRemove(item.id)}>
+                    Supprimer
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
