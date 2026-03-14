@@ -1,4 +1,5 @@
-import { FormEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import type { FormEvent } from 'react'
 import Card from '../components/Card'
 import FormField from '../components/FormField'
 import Skeleton from '../components/Skeleton'
@@ -24,7 +25,7 @@ const Settings = () => {
       try {
         const data = await fetchProfile(user.id)
         setProfile(data)
-      } catch (err) {
+      } catch {
         setMessage('Impossible de charger le profil.')
       } finally {
         setLoading(false)
@@ -81,7 +82,7 @@ const Settings = () => {
       setProfile(updated)
       await refreshUser()
       setMessage('Profil mis à jour.')
-    } catch (err) {
+    } catch {
       setMessage('Mise à jour échouée.')
     }
   }

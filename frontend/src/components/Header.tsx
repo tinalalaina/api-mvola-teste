@@ -10,6 +10,14 @@ const Header = () => {
         <Link className="logo" to="/">
           AgroConnect
         </Link>
+
+        <nav className="main-links">
+          <Link to="/shop">Boutique</Link>
+          {isAuthenticated && role === 'CLIENT' ? <Link to="/cart">Panier</Link> : null}
+          {isAuthenticated ? <Link to="/orders">Commandes</Link> : null}
+          {isAuthenticated && role === 'PRESTATAIRE' ? <Link to="/seller/products">Mes produits</Link> : null}
+        </nav>
+
         {!isAuthenticated ? (
           <nav className="auth-links">
             <Link to="/login" className="button">
